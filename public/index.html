@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>거짓말쟁이들</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>Registration</h1>
+      <form action="/">
+        <hr>
+        
+        <label id="icon" for="name"><i class="fas fa-user"></i></label>
+        <input type="text" name="name" id="name" placeholder="name" required/>
+
+        <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
+        <input type="text" name="name" id="client-ip" placeholder="ip address" required/>
+        
+        <hr>
+        <div class="btn-block">
+          <button type="button" onclick="putData()">Submit</button>
+        </div>
+      </form>
+    </div>
+    <script>
+        // HTML의 <script> 요소를 생성한다
+        const se = document.createElement('script');
+        // <script> 요소의 src 속성을 설정한다
+        se.src = 'https://ipinfo.io?callback=callback';
+        // <body> 요소의 하위 끝에 붙인다
+        // 그리고 콜백 함수를 호출한다
+        document.body.appendChild(se);
+        // 앞서 생성한 <script> 요소를 제거한다
+        document.body.removeChild(se);
+      
+      // 콜백 함수가 호출된다
+      function callback(data) {
+        console.log(data.ip);
+        document.getElementById('client-ip').value = data.ip;
+      }  
+    </script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <!--my JS-->
+    <script type="text/javascript" src="settingFirebase.js"></script>
+    <script type="text/javascript" src="firstpage.js"></script>
+  </body>
+</html>
