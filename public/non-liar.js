@@ -17,10 +17,13 @@ function getData(){
 }
 
 function endGame(){
+    location.href="showAllUser.html";
+}
+
+function moveOtherGame(){
     var idx = sessionStorage.getItem("idx");
     const newData = {
         num : parseInt(idx)+1
     }
     rootRef.update(newData);
-    location.href="showAllUser.html";
 }

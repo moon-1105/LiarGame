@@ -33,26 +33,20 @@ function init(){
         sessionStorage.setItem("iplist",iplist);
         sessionStorage.setItem("namelist",namelist);
     });
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://jsonip.com/?callback=DisplayIP";
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
+function DisplayIP(response) {
+    console.log(response.ip);  // alerts  ip address
+    sessionStorage.setItem("myIp", response.ip);
 }
 
-// 콜백 함수가 호출된다
-function callback(data) {
-    console.log(data.ip);
-}
-
-function getIP(){
-    const se = document.createElement('script');
-    // <script> 요소의 src 속성을 설정한다
-    se.src = 'https://ipinfo.io?callback=callback';
-    // <body> 요소의 하위 끝에 붙인다
-    // 그리고 콜백 함수를 호출한다
-    document.body.appendChild(se);
-    // 앞서 생성한 <script> 요소를 제거한다
-    document.body.removeChild(se);
-}
 function getRandom(a) {
     return a[Math.floor(Math.random() * a.length)];
 }
+
 function goData(){
     var numlist = sessionStorage.getItem("numlist").split(",");
     var iplist = sessionStorage.getItem("iplist").split(",");
@@ -66,12 +60,18 @@ function goData(){
     console.log(numlist[target_idx]);
     console.log(iplist[target_idx]);
     console.log(namelist[target_idx]);
-
-    if(getIP() == iplist[target_idx]){
+    var myIp = sessionStorage.getItem("myIp");
+    console.log("my ip : "+ myIp);
+    
+    if(myIp == iplist[target_idx]){
         location.href="liar.html";
     }else{
         location.href="non-liar.html";
     }
+    
+}
+function moveMainPage(){
+    location.href="index.html";
 }
 function deleteData(){
     arr = sessionStorage.getItem("namelist").split(",");
@@ -82,5 +82,5 @@ function deleteData(){
         console.log('users/'+arr[i]+" 지움");
         deleteRef.remove();
     }
-    location.href="index.html";
+    
 }
