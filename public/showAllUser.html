@@ -20,11 +20,19 @@
 </tbody>
 </table>
     <div class="btn-block">
-       <button type="button" onclick="goData()"> 거짓말쟁이는 누구? </button>
+       <button type="button" onclick="setLiar()"> (방장 전용) 거짓말쟁이는 누구? </button>
     </div>
     <div class="btn-block">
+        <button type="button" onclick="deleteLiar()"> (방장 전용) 거짓말쟁이 리셋 </button>
+    </div>
+    <p id="res" class="sentence"> 아직 거짓말쟁이가 정해지지 않았어요 </p>
+    <div class="btn-block">
+        <button type="button" onclick="startGame()"> 게임 시작 </button>
+     </div>
+    <div class="btn-block">
        <button type="button" onclick="moveMainPage()"> 처음 화면으로 </button>
- </div>
+    </div>
+
   </body>
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
